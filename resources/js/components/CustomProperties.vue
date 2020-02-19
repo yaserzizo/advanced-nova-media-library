@@ -59,7 +59,7 @@
             },
 
             getProperty (property) {
-                return _.get(this.image, `custom_properties.${property}`)
+                return _.get(this.image, `custom_properties.${property}`)=="0"?false:_.get(this.image, `custom_properties.${property}`);
             },
 
             setProperty (property, value) {
