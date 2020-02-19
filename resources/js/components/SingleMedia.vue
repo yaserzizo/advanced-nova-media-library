@@ -18,9 +18,9 @@
       </a>
     </div>
     <img :src="src" :alt="image.name" ref="image" class="gallery-image">
-    <div v-if="field.showDimensions" class="dimensions">
-      <strong>{{ width }}×{{ height }}</strong> px<br>
-      <strong>{{ acpectRatio }}</strong> (<i>{{ ratio }}</i>)
+    <div>
+      <span class="icon answer" v-if="image.custom_properties[Object.keys(image.custom_properties)[0]] == true"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.25 8.891l-1.421-1.409-6.105 6.218-3.078-2.937-1.396 1.436 4.5 4.319 7.5-7.627z"/></svg></span>
+
     </div>
     <div v-if="field.showDimensions" class="type">
       {{ mimeType }}
@@ -71,6 +71,7 @@
         window.open(blobUrl, '_blank');
       },
       getImage() {
+
         if (this.editable && this.image.__media_urls__.form) {
           this.src = this.image.__media_urls__.form;
         } else if (!this.editable && this.image.__media_urls__.detailView) {
@@ -222,5 +223,8 @@
     .download {
       left: 10px;
     }
+  }
+  .answer svg{
+    fill: var(--info);
   }
 </style>
